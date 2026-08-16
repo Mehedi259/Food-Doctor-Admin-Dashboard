@@ -4,7 +4,7 @@ import { getDashboardStats, getSupportTickets } from '../api/services';
 import toast from 'react-hot-toast';
 
 export default function Dashboard() {
-  const [statsData, setStatsData] = useState<{ total_users: number, monthly_data: any[] } | null>(null);
+  const [statsData, setStatsData] = useState<{ year?: number, total_users: number, monthly_data: any[] } | null>(null);
   const [supportStats, setSupportStats] = useState({ resolved: 0, pending: 0 });
   const [loading, setLoading] = useState(true);
 

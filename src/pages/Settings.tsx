@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Settings as SettingsIcon, Plus, Edit2, Trash2, Image as ImageIcon } from 'lucide-react';
+import { Settings as SettingsIcon, Plus, Edit2, Trash2 } from 'lucide-react';
 import { getCategories, createCategory, updateCategory, deleteCategory } from '../api/services';
 import toast from 'react-hot-toast';
 

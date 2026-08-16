@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Users as UsersIcon, Shield, Ban, CheckCircle, Search, Edit2 } from 'lucide-react';
+import { Users as UsersIcon, Shield, Ban, CheckCircle, Search } from 'lucide-react';
 import { getUsers, updateUser } from '../api/services';
 import toast from 'react-hot-toast';
 
