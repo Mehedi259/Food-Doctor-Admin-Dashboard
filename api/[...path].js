@@ -1,21 +1,22 @@
 export default async function handler(req, res) {
   const targetUrl = 'http://178.156.229.53';
   
-  // Vercel parses the query params for us
-  const { proxy_path } = req.query;
+  // Vercel parses the catch-all parameter 'path'
+  const { path } = req.query;
   
   let actualPath = '';
-  if (Array.isArray(proxy_path)) {
-    actualPath = proxy_path.join('/');
-  } else if (proxy_path) {
-    actualPath = proxy_path;
+  if (Array.isArray(path)) {
+    actualPath = path.join('/');
+  } else if (path) {
+    actualPath = path;
   }
 
-  // If there are other query params, we should append them
+  // Preserve other query parameters
   const urlObj = new URL(req.url, `http://${req.headers.host}`);
-  urlObj.searchParams.delete('proxy_path');
+  urlObj.searchParams.delete('path'); // Remove the Vercel path parameter
   const searchParams = urlObj.searchParams.toString();
 
+  // Reconstruct final URL
   let finalUrl = `${targetUrl}/api/${actualPath}`;
   if (searchParams) {
     finalUrl += `?${searchParams}`;
@@ -35,6 +36,10 @@ export default async function handler(req, res) {
     delete options.headers['origin'];
     delete options.headers['referer'];
     delete options.headers['cookie']; // Prevent Django CSRF errors
+
+    // We shouldn't forward host from the original request
+    // It's already overwritten by host: '178.156.229.53'
+    delete options.headers['host'];
 
     if (req.method !== 'GET' && req.method !== 'HEAD') {
       options.body = JSON.stringify(req.body);
