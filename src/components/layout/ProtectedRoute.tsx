@@ -8,8 +8,8 @@ export default function ProtectedRoute() {
     return <div className="min-h-screen flex items-center justify-center bg-background text-text-secondary">Loading...</div>;
   }
 
-  // Allow both staff and superusers
-  if (!user || (!user.is_staff && !user.is_superuser)) {
+  // Allow admins, staff and superusers
+  if (!user || (!user.is_admin && !user.is_staff && !user.is_superuser)) {
     return <Navigate to="/login" replace />;
   }
 

@@ -3,8 +3,9 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 interface User {
   id: number;
   email: string;
-  is_staff: boolean;
-  is_superuser: boolean;
+  is_staff?: boolean;
+  is_superuser?: boolean;
+  is_admin?: boolean;
 }
 
 interface AuthContextType {
