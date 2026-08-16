@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, LogOut, ChevronDown, ChevronRight, Database } from 'lucide-react';
+import { LayoutDashboard, LogOut, ChevronDown, ChevronRight, Database, Users, MessageSquare, Settings } from 'lucide-react';
 import { useSchema } from '../../context/SchemaContext';
 import { useAuth } from '../../context/AuthContext';
 
@@ -45,6 +45,54 @@ export default function Sidebar() {
           <LayoutDashboard className="mr-3 h-5 w-5" strokeWidth={2} />
           Dashboard
         </NavLink>
+
+        <NavLink
+          to="/users"
+          className={({ isActive }) =>
+            `flex items-center px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${
+              isActive
+                ? 'bg-primary/10 text-primary shadow-sm'
+                : 'text-text-secondary hover:bg-background hover:text-text-primary'
+            }`
+          }
+        >
+          <Users className="mr-3 h-5 w-5" strokeWidth={2} />
+          User Management
+        </NavLink>
+
+        <NavLink
+          to="/support"
+          className={({ isActive }) =>
+            `flex items-center px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${
+              isActive
+                ? 'bg-primary/10 text-primary shadow-sm'
+                : 'text-text-secondary hover:bg-background hover:text-text-primary'
+            }`
+          }
+        >
+          <MessageSquare className="mr-3 h-5 w-5" strokeWidth={2} />
+          Support / Feedback
+        </NavLink>
+
+        <NavLink
+          to="/settings"
+          className={({ isActive }) =>
+            `flex items-center px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${
+              isActive
+                ? 'bg-primary/10 text-primary shadow-sm'
+                : 'text-text-secondary hover:bg-background hover:text-text-primary'
+            }`
+          }
+        >
+          <Settings className="mr-3 h-5 w-5" strokeWidth={2} />
+          Settings
+        </NavLink>
+
+        <div className="pt-4 mt-4 border-t border-border">
+          <p className="px-2 text-xs font-semibold text-text-secondary uppercase tracking-wider mb-2">
+            Dynamic Models
+          </p>
+        </div>
 
         {loading ? (
           <div className="px-3 py-4 text-xs text-text-secondary text-center">Loading modules...</div>
