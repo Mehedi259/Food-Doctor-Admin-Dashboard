@@ -4,6 +4,9 @@ import Layout from './components/layout/Layout';
 import ProtectedRoute from './components/layout/ProtectedRoute';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
+import Support from './pages/Support';
+import Users from './pages/Users';
+import Settings from './pages/Settings';
 
 function App() {
   return (
@@ -15,9 +18,9 @@ function App() {
           <Route element={<ProtectedRoute />}>
             <Route path="/" element={<Layout />}>
               <Route index element={<Dashboard />} />
-              <Route path="users" element={<div className="text-xl font-bold">User Management (Coming Soon)</div>} />
-              <Route path="support" element={<div className="text-xl font-bold">Support & Feedback (Coming Soon)</div>} />
-              <Route path="settings" element={<div className="text-xl font-bold">App Settings (Coming Soon)</div>} />
+              <Route path="users" element={<Users />} />
+              <Route path="support" element={<Support />} />
+              <Route path="settings" element={<Settings />} />
             </Route>
           </Route>
 
