@@ -17,15 +17,13 @@ export default function Login() {
     setLoading(true);
     
     try {
-      // The backend uses /users/auth/login-password/ for email/password login
-      const response = await api.post('/users/auth/login-password/', {
+      const response = await api.post('/auth/login-password/', {
         email,
         password,
       });
 
       const { access, refresh, user } = response.data;
       
-      // Basic check to see if user is allowed to access admin dashboard
       if (user.is_staff || user.is_superuser) {
         login(access, refresh, user);
         toast.success('Login successful!');
