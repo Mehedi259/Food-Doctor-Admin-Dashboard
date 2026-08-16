@@ -24,7 +24,8 @@ export default function Login() {
 
       const { access, refresh, user } = response.data;
       
-      if (user.is_staff || user.is_superuser) {
+      // Checking for is_admin as returned by the API
+      if (user.is_admin || user.is_staff || user.is_superuser) {
         login(access, refresh, user);
         toast.success('Login successful!');
         navigate('/');
