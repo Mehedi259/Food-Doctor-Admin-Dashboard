@@ -50,3 +50,31 @@ export const deleteCategory = async (endpoint: string, id: number) => {
   const response = await api.delete(`/${endpoint}/${id}/`);
   return response.data;
 };
+
+// Dynamic Admin
+export const getDynamicSchema = async () => {
+  const response = await api.get('/dynamic-admin/schema/');
+  return response.data;
+};
+
+export const getDynamicList = async (appLabel: string, modelName: string) => {
+  const response = await api.get(`/dynamic-admin/${appLabel}/${modelName}/`);
+  return response.data;
+};
+
+export const createDynamicItem = async (appLabel: string, modelName: string, data: any, hasFile = false) => {
+  const headers = hasFile ? { 'Content-Type': 'multipart/form-data' } : undefined;
+  const response = await api.post(`/dynamic-admin/${appLabel}/${modelName}/`, data, { headers });
+  return response.data;
+};
+
+export const updateDynamicItem = async (appLabel: string, modelName: string, id: number, data: any, hasFile = false) => {
+  const headers = hasFile ? { 'Content-Type': 'multipart/form-data' } : undefined;
+  const response = await api.patch(`/dynamic-admin/${appLabel}/${modelName}/${id}/`, data, { headers });
+  return response.data;
+};
+
+export const deleteDynamicItem = async (appLabel: string, modelName: string, id: number) => {
+  const response = await api.delete(`/dynamic-admin/${appLabel}/${modelName}/${id}/`);
+  return response.data;
+};
